@@ -15,6 +15,17 @@ class RidePostingReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     authentication_classes = (SessionAuthentication, BasicAuthentication)#This will need to be changed to implement social auth
     permission_classes = (AllowAny,)
     serializer_class = RidePostingSerializer
+    
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `price` query parameter in the URL.
+        """
+        queryset = RidePosting.objects.all()
+        desired_price = self.request.query_params.get('price', None)
+        if desired_price is not None:
+            queryset = queryset.filter(price__lte=desired__price)
+        return queryset
 
 #User needs to be signed in (authenticated) to use this create view
 class RidePostingCreateAPIView(CreateAPIView):
