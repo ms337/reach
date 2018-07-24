@@ -33,20 +33,20 @@ class RidePostingReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 #User needs to be signed in (authenticated) to use this create view
-class RidePostingCreateAPIView(APIViews.CreateAPIView):
+class RidePostingCreateAPIView(CreateAPIView):
     queryset = RidePosting.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = RidePostingSerializer
 
 #User must be owner to perform PUT or DELETE requests
-class RidePostingRUDAPIView(APIViews.RetrieveUpdateDestroyAPIView):
+class RidePostingRUDAPIView(RetrieveUpdateDestroyAPIView):
     queryset = RidePosting.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsOwnerOrReadOnly,)
     serializer_class = RidePostingSerializer
 
-class RidePostingAcceptView(APIViews.RetrieveUpdateAPIView):
+class RidePostingAcceptView(RetrieveUpdateAPIView):
     queryset = RidePosting.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
@@ -58,13 +58,13 @@ class RideRequestReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (AllowAny,)
     serializer_class = RideRequestSerializer
 
-class RideRequestCreateAPIView(APIViews.CreateAPIView):
+class RideRequestCreateAPIView(CreateAPIView):
     queryset = RideRequest.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = RideRequestSerializer
 
-class RideRequestRUDAPIView(APIViews.RetrieveUpdateDestroyAPIView):
+class RideRequestRUDAPIView(RetrieveUpdateDestroyAPIView):
     queryset = RideRequest.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsOwnerOrReadOnly,)
@@ -76,13 +76,13 @@ class ProfileReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (AllowAny,)
     serializer_class = RideRequestSerializer
 
-class ProfileCreateAPIView(APIViews.CreateAPIView):
+class ProfileCreateAPIView(CreateAPIView):
     queryset = Profile.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = RideRequestSerializer
 
-class ProfileRUDAPIView(APIViews.RetrieveUpdateDestroyAPIView):
+class ProfileRUDAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsOwnerOrReadOnly,)
