@@ -39,7 +39,7 @@ class RidePosting(models.Model):
     price = models.FloatField()
     seats = models.IntegerField()
     description = models.TextField(blank=True)
-    seats_taken = models.IntegerField(default=0,blank=True)
+    seats_left = models.IntegerField()
 
     confirmed_riders = models.ManyToManyField(User, related_name = "Rides", blank = True)
     potential_riders = models.ManyToManyField(User, related_name = "Ride_Offers", blank = True)
