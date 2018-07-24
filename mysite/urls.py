@@ -15,7 +15,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, url
+
+from django.conf.urls import url, include
+from rides.models import Profile
+from rest_framework import routers, serializers, viewsets
+
+
+
+
+# Serializers define the API representation.
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('user', 'email', 'name', 'age', 'phone_num')
+
+# ViewSets define the view behavior.
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'profiles', ProfileViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^chat/', include('chat.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

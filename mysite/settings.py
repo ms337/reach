@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     #'django.contrib.gis.geos',
     #'django.contrib.gis.db',
     'location_field.apps.DefaultConfig',
+    'channels',
+    'chat',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+ASGI_APPLICATION = 'mysite.routing.application'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

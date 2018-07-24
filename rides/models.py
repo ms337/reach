@@ -13,6 +13,9 @@ class Place(models.Model):
     location = LocationField(based_fields=['city'], zoom=7, default=Point(1.0, 1.0))
     objects = GeoManager()
 
+    def __str__(self):
+        return self.city + "at" + self.location
+
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name= 'person', unique = True, on_delete=models.CASCADE)
     email = models.EmailField(max_length=25, unique=True)
@@ -21,9 +24,12 @@ class Profile(models.Model):
     rating = models.FloatField(default= 5.0)
     num_rides = models.IntegerField(default=0)
     friendlist = models.ManyToManyField(User)
-    phone_num = models.BigIntegerField(blank=True, unique= True)
+    phone_num = models.BigIntegerField(blank=True, null = True, unique= True)
     #is_active = models.BooleanField(default=True)
     #is_staff = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name + 'with email: ' + self.email
 
 class RidePosting(models.Model):
     dest = models.ForeignKey(Place,related_name="rides_from",on_delete=models.CASCADE)
