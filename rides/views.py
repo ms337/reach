@@ -46,7 +46,10 @@ class RidePostingRUDAPIView(APIViews.RetrieveUpdateDestroyAPIView):
     serializer_class = RidePostingSerializer
     
 class RidePostingAcceptView(APIViews.RetrieveUpdateAPIView):
-    
+    queryset = RidePosting.objects.all()
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = RidePostingAcceptSerializer
 
 class RideRequestReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = RideRequest.objects.all()
