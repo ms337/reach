@@ -20,3 +20,8 @@ class RidePostingSerializer(serializers.ModelSerializer):
     class Meta:
         model = RidePosting
         fields = ('__all__')
+        
+class RidePostingAcceptSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RidePosting
+        fields = ('seats','confirmed_riders')
