@@ -1,5 +1,5 @@
-"""mysite URL Configuration
 
+"""
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
@@ -13,49 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-<<<<<<< HEAD
-from django.urls import path
-from django.conf.urls import include, url
-
-from django.conf.urls import url, include
-from rides.models import Profile
-from rest_framework import routers, serializers, viewsets
-
-
-
-
-# Serializers define the API representation.
-class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ('user', 'email', 'name', 'age', 'phone_num')
-
-# ViewSets define the view behavior.
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'profiles', ProfileViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^chat/', include('chat.urls')),
-    url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-=======
-from django.urls import path, include
+from django.urls import path, include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reachapi/', include('reachapi.urls')),
     url(r'^rest-auth/', include('rest_auth.urls'))
->>>>>>> 4a0737d91cd2b9868e149dfcc56de8231e461c35
 ]
