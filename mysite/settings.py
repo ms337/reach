@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rides',
     'django.contrib.gis',
+    'rest_framework.authtoken',
+    'rest_auth',
     #'django.contrib.gis.geos',
     #'django.contrib.gis.db',
     'location_field.apps.DefaultConfig',
