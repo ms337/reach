@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path
 from django.conf.urls import include, url
 
@@ -49,4 +50,12 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+=======
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('reachapi/', include('reachapi.urls')),
+    url(r'^rest-auth/', include('rest_auth.urls'))
+>>>>>>> 4a0737d91cd2b9868e149dfcc56de8231e461c35
 ]
