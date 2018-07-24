@@ -15,10 +15,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include, url
+from django.urls import path, include
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reachapi/', include('reachapi.urls')),
+    path('rides/', include('rides.urls')),
     url(r'^rest-auth/', include('rest_auth.urls'))
 ]
