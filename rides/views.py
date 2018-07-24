@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework import APIViews
+from rest_framework.generics import APIViews
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .serializers import PlaceSerializer, ProfileSerializer, RidePostingSerializer, RideRequestSerializer, RidePostingAcceptSerializer
