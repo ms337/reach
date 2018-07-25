@@ -33,11 +33,10 @@ class RidePosting(models.Model):
     dest = models.ForeignKey(Place,related_name="rides_from",on_delete=models.CASCADE)
     start =  models.ForeignKey(Place, related_name="rides_to",on_delete=models.CASCADE)
 
-<<<<<<< HEAD
+
     owner = models.ForeignKey(User,related_name = "RidePosts",on_delete=models.CASCADE)
-=======
-    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE, editable = False)
->>>>>>> a67d2ee53d108d3024b38dbef96ee3db68c0ac6a
+    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE)
+
 
     date = models.DateField(db_index=True)
     time_min = models.TimeField(db_index=True)
@@ -70,11 +69,10 @@ class RideRequest(models.Model):
 
     #timeInRange = (models.TimeField, models.TimeField)
     seatsNeeded = models.IntegerField(default= 1)
-<<<<<<< HEAD
+
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests") # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
-=======
-    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests",editable=False) # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
->>>>>>> a67d2ee53d108d3024b38dbef96ee3db68c0ac6a
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests") # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
+
     #flexibleTime = models.BooleanField(default= False)
     #currentlyRequestedList = models.ManyToManyField(null=True, blank=True, symmetrical= False)
     requestCompleted = models.BooleanField(default=False)
