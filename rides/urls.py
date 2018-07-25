@@ -13,4 +13,6 @@ urlpatterns = format_suffix_patterns([
         views.RidePostingAcceptView.as_view()),
     url(r'^ridepostings/$',
         views.RidePostingListView.as_view()),
+    url(r'^places/create/$',
+        views.PlaceCreateView.as_view()),
 ])
