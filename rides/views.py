@@ -87,3 +87,9 @@ class ProfileRUDAPIView(RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsOwnerOrReadOnly,)
     serializer_class = RideRequestSerializer
+
+class PlaceCreateView(CreateAPIView):
+    queryset = RidePosting.objects.all()
+    authentication_classes = (SessionAuthentication, BasicAuthentication)#This will need to be changed to implement social auth
+    permission_classes = (AllowAny,)
+    serializer_class = PlaceSerializer
