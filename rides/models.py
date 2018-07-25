@@ -34,8 +34,7 @@ class RidePosting(models.Model):
     start =  models.ForeignKey(Place, related_name="rides_to",on_delete=models.CASCADE)
 
 
-    owner = models.ForeignKey(User,related_name = "RidePosts",on_delete=models.CASCADE)
-    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE)
+    user = models.ForeignKey(User,null=True,related_name = "RidePoster",on_delete=models.CASCADE)
 
 
     date = models.DateField(db_index=True)
@@ -70,7 +69,7 @@ class RideRequest(models.Model):
     #timeInRange = (models.TimeField, models.TimeField)
     seatsNeeded = models.IntegerField(default= 1)
 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests") # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
+    
     user = models.ForeignKey(User, null=True,on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests") # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
 
     #flexibleTime = models.BooleanField(default= False)
