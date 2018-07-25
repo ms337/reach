@@ -4,7 +4,7 @@ from .models import Place, Profile, RideRequest, RidePosting
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = ('city')
+        fields = ('city',)
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
