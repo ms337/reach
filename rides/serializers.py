@@ -24,4 +24,4 @@ class RidePostingSerializer(serializers.ModelSerializer):
 class RidePostingAcceptSerializer(serializers.ModelSerializer):
     class Meta:
         model = RidePosting
-        fields = ('seats','confirmed_riders')
+        fields = ('seats_left','confirmed_riders')
