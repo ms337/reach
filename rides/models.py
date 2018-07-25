@@ -30,12 +30,12 @@ class Profile(models.Model):
     #is_staff = models.BooleanField(default=False)
 
 class RidePosting(models.Model):
-    dest = models.ForeignKey(Place,related_name="rides_from",on_delete=models.CASCADE, editable = False)
-    start =  models.ForeignKey(Place, related_name="rides_to",on_delete=models.CASCADE,editable=False)
+    dest = models.ForeignKey(Place,related_name="rides_from",on_delete=models.CASCADE)
+    start =  models.ForeignKey(Place, related_name="rides_to",on_delete=models.CASCADE)
 
-    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE, editable = False)
+    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE)
 
-    date = models.DateField(db_index=True, editable = False)
+    date = models.DateField(db_index=True)
     time_min = models.TimeField(db_index=True)
     time_max = models.TimeField(db_index=True, default=time_min)
 
@@ -47,7 +47,7 @@ class RidePosting(models.Model):
     confirmed_riders = models.ManyToManyField(User, related_name = "Rides", blank = True)
     potential_riders = models.ManyToManyField(User, related_name = "Ride_Offers", blank = True)
 
-    stops = ArrayField(base_field=models.CharField(max_length=30), size = 100,blank = True, editable = False)
+    stops = ArrayField(base_field=models.CharField(max_length=30), size = 100,blank = True)
 
     #objects = RidePostingManager()
 
