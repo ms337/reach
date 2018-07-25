@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView, ListAPIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .serializers import PlaceSerializer, ProfileSerializer, RidePostingSerializer, RideRequestSerializer, RidePostingAcceptSerializer
@@ -11,7 +11,7 @@ from .permissions import IsOwnerOrReadOnly
 from .models import RidePosting, RideRequest, Profile
 
 #User does not need to be signed in (authenticated) to access this view
-class RidePostingReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+class RidePostingListView(ListAPIView):
     queryset = RidePosting.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)#This will need to be changed to implement social auth
     permission_classes = (AllowAny,)
@@ -52,7 +52,7 @@ class RidePostingAcceptView(RetrieveUpdateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = RidePostingAcceptSerializer
 
-class RideRequestReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+class RideRequestListView(ListAPIView):
     queryset = RideRequest.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (AllowAny,)
@@ -70,7 +70,7 @@ class RideRequestRUDAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
     serializer_class = RideRequestSerializer
 
-class ProfileReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+class ProfileListView(ListAPIView):
     queryset = Profile.objects.all()
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (AllowAny,)
