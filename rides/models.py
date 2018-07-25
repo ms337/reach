@@ -17,7 +17,7 @@ class Place(models.Model):
         return self.city + "at" + self.location
 
 class Profile(models.Model):
-    owner = models.OneToOneField(User, related_name= 'person', unique = True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name= 'person', unique = True, on_delete=models.CASCADE)
     email = models.EmailField(max_length=25, unique=True)
     name = models.CharField(max_length=255)
     age = models.IntegerField()
@@ -25,18 +25,19 @@ class Profile(models.Model):
     num_ratings = models.IntegerField(default=0)
     num_rides = models.IntegerField(default=0)
     friendlist = models.ManyToManyField(User)
-    phone_num = models.BigIntegerField(blank=True, null = True, unique= True)
+    phone_num = models.BigIntegerField(blank=True, unique= True)
     #is_active = models.BooleanField(default=True)
     #is_staff = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name + 'with email: ' + self.email
 
 class RidePosting(models.Model):
     dest = models.ForeignKey(Place,related_name="rides_from",on_delete=models.CASCADE)
     start =  models.ForeignKey(Place, related_name="rides_to",on_delete=models.CASCADE)
 
+<<<<<<< HEAD
     owner = models.ForeignKey(User,related_name = "RidePosts",on_delete=models.CASCADE)
+=======
+    user = models.ForeignKey(User,null=True,related_name = "RidePosts",on_delete=models.CASCADE, editable = False)
+>>>>>>> a67d2ee53d108d3024b38dbef96ee3db68c0ac6a
 
     date = models.DateField(db_index=True)
     time_min = models.TimeField(db_index=True)
@@ -45,7 +46,7 @@ class RidePosting(models.Model):
     price = models.FloatField()
     seats = models.IntegerField()
     description = models.TextField(blank=True)
-    seats_left = models.IntegerField()
+    seats_left = models.IntegerField(default=0)
 
     confirmed_riders = models.ManyToManyField(User, related_name = "Rides", blank = True)
     potential_riders = models.ManyToManyField(User, related_name = "Ride_Offers", blank = True)
@@ -69,7 +70,11 @@ class RideRequest(models.Model):
 
     #timeInRange = (models.TimeField, models.TimeField)
     seatsNeeded = models.IntegerField(default= 1)
+<<<<<<< HEAD
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests") # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
+=======
+    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE, verbose_name= "The rider taking the ride", related_name= "riderrequests",editable=False) # check related_name. Is supposed to create a reverse relationship where riderrequests.all will return all rider all instances of RideRequests it is linked to.
+>>>>>>> a67d2ee53d108d3024b38dbef96ee3db68c0ac6a
     #flexibleTime = models.BooleanField(default= False)
     #currentlyRequestedList = models.ManyToManyField(null=True, blank=True, symmetrical= False)
     requestCompleted = models.BooleanField(default=False)
